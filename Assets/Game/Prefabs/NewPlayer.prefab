@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  playerAnimator: {fileID: 6958322489024286119}
 --- !u!114 &-3745346615384371979
 MonoBehaviour:
   m_ObjectHideFlags: 0

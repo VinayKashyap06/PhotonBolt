@@ -6,11 +6,15 @@ public class PlayerMovement : Bolt.EntityBehaviour<INewPlayerState>
 {
     [Range(0,5)]
     public float speed=3f;
+
+    [SerializeField]
+    private Animator playerAnimator;
     //attached function of entity behaviour called
     public override void Attached()
     {
         //setting state's transform to this component's transform
         state.SetTransforms(state.NewPlayerTransform, transform);
+        state.SetAnimator(playerAnimator);
     }
 
     //update for local controller
@@ -37,6 +41,20 @@ public class PlayerMovement : Bolt.EntityBehaviour<INewPlayerState>
         if (mov!=Vector3.zero)
         {
             transform.position += mov * speed * BoltNetwork.FrameDeltaTime; //stands for deltatime
+            state.isIdle = false;
         }
+        else
+        {
+            state.isIdle = true;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (state.isIdle)
+        {
+            state.Animator.Play("Idle");
+        }else
+            state.Animator.Play("ChangeColor");
     }
 }
