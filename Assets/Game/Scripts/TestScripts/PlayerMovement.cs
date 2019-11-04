@@ -50,11 +50,10 @@ public class PlayerMovement : Bolt.EntityBehaviour<INewPlayerState>
     }
 
     private void FixedUpdate()
-    {
+    {        
         if (state.isIdle)
-        {
             state.Animator.Play("Idle");
-        }else
+        else
             state.Animator.Play("ChangeColor");
     }
 }
